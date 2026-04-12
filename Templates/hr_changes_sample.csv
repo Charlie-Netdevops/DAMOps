@@ -1,0 +1,7 @@
+Action,DisplayName,UPN,Department,Manager,TargetOU,Groups,LicenseSKU,StartDate,TicketRef
+Join,Alex Rivera,arivera@contoso.com,Engineering,lpark@contoso.com,OU=Engineering;OU=Users;DC=contoso;DC=com,Engineering Team;All Employees;Azure DevOps Users,06fd3e92-2a8b-46db-b4f3-4b445e814a2e,2026-04-15,CHG0045123
+Join,Nina Okoro,nokoro@contoso.com,Finance,tbrown@contoso.com,OU=Finance;OU=Users;DC=contoso;DC=com,Finance Team;All Employees;Budget Approvers,06fd3e92-2a8b-46db-b4f3-4b445e814a2e,2026-04-15,CHG0045124
+Move,Jennifer Liu,jliu@contoso.com,Legal,pwong@contoso.com,OU=Legal;OU=Users;DC=contoso;DC=com,Legal Team;All Employees;Contract Reviewers,-,2026-04-14,CHG0045125
+Move,Amit Patel,apatel@contoso.com,IT Operations,jwright@contoso.com,OU=IT;OU=Users;DC=contoso;DC=com,IT Operations;All Employees;ServiceNow Admins,06fd3e92-2a8b-46db-b4f3-4b445e814a2e,2026-04-14,CHG0045126
+Leave,Brian Walsh,bwalsh@contoso.com,Facilities,nadams@contoso.com,OU=Disabled;DC=contoso;DC=com,-,06fd3e92-2a8b-46db-b4f3-4b445e814a2e,2026-04-12,CHG0045127
+Leave,Kevin O'Reilly,koreilly@contoso.com,Marketing,rgreen@contoso.com,OU=Disabled;DC=contoso;DC=com,-,06fd3e92-2a8b-46db-b4f3-4b445e814a2e,2026-04-12,CHG0045128

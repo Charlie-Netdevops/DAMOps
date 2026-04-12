@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Get-MgUser",
+    "category": "Entra ID / Graph",
+    "description": "Retrieves properties of a user or a list of users from Microsoft Entra ID.",
+    "syntax": "Get-MgUser [-UserId <String>] [-Filter <String>] [-Property <String[]>]",
+    "example": "Get-MgUser -UserId \"mchen@contoso.com\" -Property \"displayName,department,userPrincipalName\""
+  },
+  {
+    "name": "Get-MgGroup",
+    "category": "Entra ID / Graph",
+    "description": "Retrieves the properties of a group in Microsoft Entra ID.",
+    "syntax": "Get-MgGroup [-GroupId <String>] [-Filter <String>]",
+    "example": "Get-MgGroup -Filter \"displayName eq 'IT Security'\""
+  },
+  {
+    "name": "Get-MgGroupMember",
+    "category": "Entra ID / Graph",
+    "description": "Gets a list of the members of a group.",
+    "syntax": "Get-MgGroupMember -GroupId <String>",
+    "example": "Get-MgGroupMember -GroupId \"ab123456-7890-cdef-1234-567890abcdef\""
+  },
+  {
+    "name": "New-MgUser",
+    "category": "Entra ID / Graph",
+    "description": "Creates a new user account in Microsoft Entra ID.",
+    "syntax": "New-MgUser -DisplayName <String> -UserPrincipalName <String> -PasswordProfile <Hashtable> -AccountEnabled",
+    "example": "New-MgUser -DisplayName \"Jane Doe\" -UserPrincipalName \"jdoe@contoso.com\" -PasswordProfile @{Password=\"TempP@ssw0rd!\"} -AccountEnabled:$true"
+  },
+  {
+    "name": "Update-MgUser",
+    "category": "Entra ID / Graph",
+    "description": "Updates the properties of an existing user.",
+    "syntax": "Update-MgUser -UserId <String> [-JobTitle <String>] [-Department <String>]",
+    "example": "Update-MgUser -UserId \"jdoe@contoso.com\" -JobTitle \"Senior Analyst\" -Department \"Finance\""
+  },
+  {
+    "name": "Remove-MgUser",
+    "category": "Entra ID / Graph",
+    "description": "Deletes a user account from Microsoft Entra ID.",
+    "syntax": "Remove-MgUser -UserId <String>",
+    "example": "Remove-MgUser -UserId \"jdoe@contoso.com\""
+  },
+  {
+    "name": "Get-MgDirectoryRole",
+    "category": "Entra ID / Graph",
+    "description": "Retrieves the directory roles that are activated in the tenant.",
+    "syntax": "Get-MgDirectoryRole",
+    "example": "Get-MgDirectoryRole | Select-Object DisplayName, RoleTemplateId"
+  },
+  {
+    "name": "Get-MgDirectoryRoleMember",
+    "category": "Entra ID / Graph",
+    "description": "Retrieves the members (users, groups, etc.) assigned to a directory role.",
+    "syntax": "Get-MgDirectoryRoleMember -DirectoryRoleId <String>",
+    "example": "Get-MgDirectoryRoleMember -DirectoryRoleId \"role-id-here\""
+  },
+  {
+    "name": "Get-MgAuditLogSignIn",
+    "category": "Entra ID / Graph",
+    "description": "Retrieves Microsoft Entra ID sign-in logs.",
+    "syntax": "Get-MgAuditLogSignIn -Filter <String>",
+    "example": "Get-MgAuditLogSignIn -Filter \"createdDateTime ge 2026-04-01T00:00:00Z and userPrincipalName eq 'mchen@contoso.com'\""
+  },
+  {
+    "name": "Get-MgUserMemberOf",
+    "category": "Entra ID / Graph",
+    "description": "Gets groups and directory roles that the user is a direct member of.",
+    "syntax": "Get-MgUserMemberOf -UserId <String>",
+    "example": "Get-MgUserMemberOf -UserId \"mchen@contoso.com\""
+  },
+  {
+    "name": "Invoke-MgGraphRequest",
+    "category": "Entra ID / Graph",
+    "description": "Makes a raw REST API call to Microsoft Graph.",
+    "syntax": "Invoke-MgGraphRequest -Method <String> -Uri <String>",
+    "example": "Invoke-MgGraphRequest -Method GET -Uri \"v1.0/users/mchen@contoso.com/manager\""
+  },
+  {
+    "name": "Get-ADUser",
+    "category": "Active Directory",
+    "description": "Gets one or more Active Directory users.",
+    "syntax": "Get-ADUser -Identity <String> -Properties <String[]>",
+    "example": "Get-ADUser -Identity \"mchen\" -Properties MemberOf, LastLogonDate"
+  },
+  {
+    "name": "Set-ADUser",
+    "category": "Active Directory",
+    "description": "Modifies properties of an Active Directory user.",
+    "syntax": "Set-ADUser -Identity <String> [-Title <String>] [-Department <String>]",
+    "example": "Set-ADUser -Identity \"mchen\" -Title \"Security Architect\""
+  },
+  {
+    "name": "Disable-ADAccount",
+    "category": "Active Directory",
+    "description": "Disables an Active Directory user, computer, or service account.",
+    "syntax": "Disable-ADAccount -Identity <String>",
+    "example": "Disable-ADAccount -Identity \"mchen\""
+  },
+  {
+    "name": "Enable-ADAccount",
+    "category": "Active Directory",
+    "description": "Enables an Active Directory user, computer, or service account.",
+    "syntax": "Enable-ADAccount -Identity <String>",
+    "example": "Enable-ADAccount -Identity \"jdoe\""
+  },
+  {
+    "name": "New-ADUser",
+    "category": "Active Directory",
+    "description": "Creates a new Active Directory user.",
+    "syntax": "New-ADUser -Name <String> -GivenName <String> -Surname <String> -UserPrincipalName <String>",
+    "example": "New-ADUser -Name \"Jane Doe\" -UserPrincipalName \"jdoe@contoso.local\" -Path \"OU=Users,DC=contoso,DC=local\""
+  },
+  {
+    "name": "Remove-ADUser",
+    "category": "Active Directory",
+    "description": "Removes an Active Directory user account.",
+    "syntax": "Remove-ADUser -Identity <String> [-Confirm:$false]",
+    "example": "Remove-ADUser -Identity \"jdoe\" -Confirm:$false"
+  },
+  {
+    "name": "Move-ADObject",
+    "category": "Active Directory",
+    "description": "Moves an Active Directory object to a new organizational unit (OU).",
+    "syntax": "Move-ADObject -Identity <String> -TargetPath <String>",
+    "example": "Get-ADUser -Identity \"mchen\" | Move-ADObject -TargetPath \"OU=Disabled,DC=contoso,DC=local\""
+  },
+  {
+    "name": "Get-ADGroupMember",
+    "category": "Active Directory",
+    "description": "Gets the members of an Active Directory group.",
+    "syntax": "Get-ADGroupMember -Identity <String>",
+    "example": "Get-ADGroupMember -Identity \"Domain Admins\""
+  },
+  {
+    "name": "Add-ADGroupMember",
+    "category": "Active Directory",
+    "description": "Adds one or more members to an Active Directory group.",
+    "syntax": "Add-ADGroupMember -Identity <String> -Members <String[]>",
+    "example": "Add-ADGroupMember -Identity \"VPN Users\" -Members \"jdoe\""
+  },
+  {
+    "name": "Remove-ADGroupMember",
+    "category": "Active Directory",
+    "description": "Removes one or more members from an Active Directory group.",
+    "syntax": "Remove-ADGroupMember -Identity <String> -Members <String[]> [-Confirm:$false]",
+    "example": "Remove-ADGroupMember -Identity \"VPN Users\" -Members \"mchen\" -Confirm:$false"
+  },
+  {
+    "name": "Get-ADComputer",
+    "category": "Active Directory",
+    "description": "Gets one or more Active Directory computers.",
+    "syntax": "Get-ADComputer -Filter <String> -Properties <String[]>",
+    "example": "Get-ADComputer -Filter \"Name -like 'WS-*'\" -Properties OperatingSystem"
+  },
+  {
+    "name": "Search-ADAccount",
+    "category": "Active Directory",
+    "description": "Locates active/inactive/disabled/locked out accounts in AD.",
+    "syntax": "Search-ADAccount [-AccountInactive] [-TimeSpan <TimeSpan>] [-UsersOnly]",
+    "example": "Search-ADAccount -AccountInactive -TimeSpan 90.00:00:00 -UsersOnly"
+  },
+  {
+    "name": "Get-Mailbox",
+    "category": "Exchange / M365",
+    "description": "Retrieves properties of Exchange Online or on-premises mailboxes.",
+    "syntax": "Get-Mailbox -Identity <String>",
+    "example": "Get-Mailbox -Identity \"mchen@contoso.com\" | Select-Object UserPrincipalName, Database"
+  },
+  {
+    "name": "Set-Mailbox",
+    "category": "Exchange / M365",
+    "description": "Modifies properties of an Exchange mailbox.",
+    "syntax": "Set-Mailbox -Identity <String> [-MaxSendSize <ByteQuantifiedSize>]",
+    "example": "Set-Mailbox -Identity \"jdoe@contoso.com\" -HiddenFromAddressListsEnabled $true"
+  },
+  {
+    "name": "Get-MsolUser",
+    "category": "Exchange / M365",
+    "description": "Legacy MSOnline module cmdlet to get Office 365 users.",
+    "syntax": "Get-MsolUser -UserPrincipalName <String>",
+    "example": "Get-MsolUser -UserPrincipalName \"mchen@contoso.com\" | Select-Object isLicensed"
+  },
+  {
+    "name": "Set-MsolUserPassword",
+    "category": "Exchange / M365",
+    "description": "Resets the password for a user in Microsoft 365.",
+    "syntax": "Set-MsolUserPassword -UserPrincipalName <String> -NewPassword <String> -ForceChangePassword <Boolean>",
+    "example": "Set-MsolUserPassword -UserPrincipalName \"jdoe@contoso.com\" -NewPassword \"TempP@ssw0rd!\" -ForceChangePassword $true"
+  },
+  {
+    "name": "Get-ADUserResultantPasswordPolicy",
+    "category": "Security & Audit",
+    "description": "Gets the password policy resulting from Fine-Grained Password Policies.",
+    "syntax": "Get-ADUserResultantPasswordPolicy -Identity <String>",
+    "example": "Get-ADUserResultantPasswordPolicy -Identity \"mchen\""
+  },
+  {
+    "name": "Search-UnifiedAuditLog",
+    "category": "Security & Audit",
+    "description": "Searches the Microsoft 365 unified audit log.",
+    "syntax": "Search-UnifiedAuditLog -StartDate <DateTime> -EndDate <DateTime> -RecordType <String>",
+    "example": "Search-UnifiedAuditLog -StartDate (Get-Date).AddDays(-7) -EndDate (Get-Date) -RecordType ExchangeAdmin"
+  },
+  {
+    "name": "Get-MailboxAuditLog",
+    "category": "Security & Audit",
+    "description": "Searches the audit log of a single Exchange mailbox.",
+    "syntax": "Get-MailboxAuditLog -Identity <String>",
+    "example": "Get-MailboxAuditLog -Identity \"mchen@contoso.com\" -LogonTypes Admin,Delegate"
+  },
+  {
+    "name": "Export-Csv",
+    "category": "Utility",
+    "description": "Converts objects into a series of CSV strings and saves them to a file.",
+    "syntax": "Export-Csv -Path <String> -NoTypeInformation",
+    "example": "Get-ADUser -Filter * | Export-Csv -Path \".\\users.csv\" -NoTypeInformation"
+  },
+  {
+    "name": "Import-Csv",
+    "category": "Utility",
+    "description": "Creates table-like custom objects from the items in a CSV file.",
+    "syntax": "Import-Csv -Path <String>",
+    "example": "$users = Import-Csv -Path \".\\hr_changes.csv\""
+  },
+  {
+    "name": "Send-MailMessage",
+    "category": "Utility",
+    "description": "Sends an email message (note: SMTP auth often required or Modern Auth).",
+    "syntax": "Send-MailMessage -To <String> -From <String> -Subject <String> -SmtpServer <String>",
+    "example": "Send-MailMessage -To \"admin@contoso.com\" -From \"damops@contoso.com\" -Subject \"Audit Complete\" -SmtpServer \"smtp.contoso.com\""
+  },
+  {
+    "name": "ConvertTo-Html",
+    "category": "Utility",
+    "description": "Converts .NET objects into HTML that can be displayed in a Web browser.",
+    "syntax": "ConvertTo-Html [-Property <String[]>] [-Head <String[]>]",
+    "example": "Get-Process | ConvertTo-Html -Property Name, CPU | Out-File \".\\processes.html\""
+  },
+  {
+    "name": "Out-File",
+    "category": "Utility",
+    "description": "Sends output to a file.",
+    "syntax": "Out-File -FilePath <String> [-Append]",
+    "example": "\"Audit completed successfully\" | Out-File -FilePath \".\\audit.log\" -Append"
+  },
+  {
+    "name": "Write-EventLog",
+    "category": "Utility",
+    "description": "Writes an event to a local or remote event log.",
+    "syntax": "Write-EventLog -LogName <String> -Source <String> -EventId <Int32> -Message <String>",
+    "example": "Write-EventLog -LogName \"Application\" -Source \"DAMOps\" -EventId 1001 -Message \"Audit completed.\""
+  }
+]

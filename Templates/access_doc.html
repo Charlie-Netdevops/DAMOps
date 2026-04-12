@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DAMOps Access Review — {{TENANT}}</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        @page { size: letter; margin: 1in; }
+        body {
+            font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            font-size: 11pt;
+            mso-line-height-rule: exactly;
+        }
+        h1 { font-size: 22pt; color: #0078d4; text-align: center; margin-bottom: 6pt; }
+        h2 { font-size: 14pt; color: #0078d4; border-bottom: 2pt solid #0078d4; padding-bottom: 4pt; margin-top: 24pt; }
+        h3 { font-size: 12pt; color: #333; margin-top: 12pt; }
+        table {
+            width: 100%; border-collapse: collapse; margin: 12pt 0;
+            mso-table-lspace: 0pt; mso-table-rspace: 0pt;
+        }
+        th {
+            background: #0078d4; color: #fff; padding: 6pt 8pt;
+            text-align: left; font-weight: bold; font-size: 9pt;
+            border: 1pt solid #005a9e;
+        }
+        td {
+            padding: 4pt 8pt; border: 1pt solid #dee2e6;
+            vertical-align: top; font-size: 9pt;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .cover { text-align: center; padding: 72pt 36pt; page-break-after: always; }
+        .cover .logo { font-size: 28pt; font-weight: 700; color: #0078d4; letter-spacing: 3pt; }
+        .cover .title { font-size: 18pt; color: #1a1a2e; margin-top: 18pt; }
+        .cover .meta { margin-top: 24pt; font-size: 11pt; color: #666; }
+        .page-break { page-break-before: always; }
+        .classification {
+            text-align: center; padding: 6pt 18pt; background: #fff3cd;
+            border: 1pt solid #ffc107; font-weight: 600; color: #856404;
+            display: inline-block; margin-top: 24pt;
+        }
+        .sig-line { margin: 24pt 0 4pt 0; border-bottom: 1pt solid #333; width: 300px; }
+        .footer { text-align: center; color: #999; font-size: 8pt; margin-top: 24pt; border-top: 1pt solid #dee2e6; padding-top: 12pt; }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover">
+        <div class="logo">DAMOPS</div>
+        <div style="font-size:9pt; color:#888; letter-spacing:3pt;">DOMAIN ACCESS MANAGEMENT OPERATIONS</div>
+        <div class="title">Access Review Report</div>
+        <div style="font-size:14pt; color:#555; margin-top:6pt;">{{TENANT}}</div>
+        <div class="meta">
+            <strong>Review Date:</strong> {{DATE}}<br>
+            <strong>Reviewer:</strong> {{REVIEWER}}<br>
+            <strong>Total Accounts:</strong> {{TOTAL_COUNT}}
+        </div>
+        <div class="classification">CONFIDENTIAL — INTERNAL USE ONLY</div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="page-break">
+        <h2>1. Executive Summary</h2>
+        <p>{{EXEC_SUMMARY}}</p>
+        <table>
+            <tr><th>Risk Level</th><th>Count</th></tr>
+            <tr><td>HIGH</td><td>{{HIGH_COUNT}}</td></tr>
+            <tr><td>MEDIUM</td><td>{{MEDIUM_COUNT}}</td></tr>
+            <tr><td>LOW</td><td>{{LOW_COUNT}}</td></tr>
+            <tr><td>INFO</td><td>{{INFO_COUNT}}</td></tr>
+            <tr><td><strong>TOTAL</strong></td><td><strong>{{TOTAL_COUNT}}</strong></td></tr>
+        </table>
+    </div>
+
+    <!-- HIGH Risk -->
+    <h2>2. HIGH Risk Findings</h2>
+    {{HIGH_TABLE}}
+
+    <!-- MEDIUM Risk -->
+    <h2>3. MEDIUM Risk Findings</h2>
+    {{MEDIUM_TABLE}}
+
+    <!-- Guest Summary -->
+    <div class="page-break">
+        <h2>4. Guest Account Summary</h2>
+        {{GUEST_SECTION}}
+    </div>
+
+    <!-- Privileged Roles -->
+    <h2>5. Privileged Role Assignments</h2>
+    {{PRIV_TABLE}}
+
+    <!-- Recommendations -->
+    <div class="page-break">
+        <h2>6. Recommendations</h2>
+        {{RECOMMENDATIONS}}
+    </div>
+
+    <!-- AI Risk Summary Placeholder -->
+    <!-- DAMOPS_AI_SECTION_PLACEHOLDER -->
+
+    <!-- Appendix -->
+    <div class="page-break">
+        <h2>7. Appendix — Full Data Export</h2>
+        {{APPENDIX_TABLE}}
+        <h3>Run Metadata</h3>
+        <table style="max-width:400px;">
+            <tr><td><strong>Tool</strong></td><td>DAMOps v1.0.0</td></tr>
+            <tr><td><strong>Tenant</strong></td><td>{{TENANT}}</td></tr>
+            <tr><td><strong>Date</strong></td><td>{{DATE}}</td></tr>
+            <tr><td><strong>Reviewer</strong></td><td>{{REVIEWER}}</td></tr>
+        </table>
+    </div>
+
+    <!-- Signature -->
+    <h2>Reviewer Acknowledgment</h2>
+    <p>I have reviewed the findings in this access review report.</p>
+    <div class="sig-line"></div>
+    <p><strong>{{REVIEWER}}</strong></p>
+    <p style="color:#999; font-size:9pt;">Date: ________________</p>
+
+    <div class="footer">Generated by DAMOps v1.0.0 | {{DATE}} | Confidential</div>
+</body>
+</html>
